@@ -13,4 +13,4 @@ RUN cp /usr/local/src/mosquitto-1.3/lib/libmosquitto.so.1 /lib/libmosquitto.so.1
 RUN adduser --system --disabled-password --disabled-login mosquitto
 ADD client.sh /root/client.sh
 ADD data.txt /root/data.txt
-CMD bash -C '/root/client.sh data.txt';'bash'
+CMD bash -C '/root/client.sh';'data.txt'
