@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /home/iot/iotframework/adult1
+cd /home/iot/iotapplication/adult1
 docker build --rm -t tlindener/mqttclientadult1 .
 for i in {6..10}
 do
@@ -7,7 +7,7 @@ do
 	cd /home/iot/iotframework
 	./pipework br1 $mqttserver 192.168.5.$i/24
 done
-cd /home/iot/iotframework/adult2
+cd /home/iot/iotapplication/adult2
 docker build --rm -t tlindener/mqttclientadult2 .
 for i in {11..15}
 do
