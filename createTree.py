@@ -28,14 +28,14 @@ ovsswitch1.attachSwitchToBridge(bridgeName,ovsadr2,ovs2.ContainerPid,"eth1",brid
 ovsswitch1.attachSwitchToBridge(bridgeName,ovsadr3,ovs3.ContainerPid,"eth1",bridgeName,ovs1.ContainerPid,"eth2","192.168.1.3/24")
 
 
-container = DockerContainer("/home/iot/iotframework/mqttserver/","tlindener/mqttserver")
+container = DockerContainer("/home/iot/iotapplication/mqttserver/","tlindener/mqttserver")
 container.build()
 container.create("/usr/bin/supervisord",[22,1883])
 container.run({22: 5000, 1883: 1883})
 ovsswitch2.attachContainerToBridge(bridgeName,container.ContainerPid,ovs2.ContainerPid,"eth1","eth5","192.168.5.5/24")
 
 for a in range(6,33):
-	container2 = DockerContainer("/home/iot/iotframework/adult1/","tlindener/mqttclientadult1")
+	container2 = DockerContainer("/home/iot/iotapplication/adult1/","tlindener/mqttclientadult1")
 	container2.build()
 	container2.create("",[])
 	container2.run({})
@@ -43,7 +43,7 @@ for a in range(6,33):
 	devicename = "eth%d" % a
 	ovsswitch3.attachContainerToBridge(bridgeName,container2.ContainerPid,ovs3.ContainerPid,"eth1",devicename,address)
 for a in range(34,66):
-	container2 = DockerContainer("home/iot/iotframework/adult2/","tlindener/mqttclientadult2")
+	container2 = DockerContainer("home/iot/iotapplication/adult2/","tlindener/mqttclientadult2")
 	container2.create("",[])
 	container2.run({})
 	address = "192.168.5.%d/24" % a
